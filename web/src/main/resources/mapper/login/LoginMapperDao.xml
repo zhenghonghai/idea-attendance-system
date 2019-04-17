@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.attendance_system.login.dao.LoginDao" >
+
+    <select id="getLogin" resultType="modules.login.entity.Login" >
+        select *
+        from login
+    </select>
+</mapper>
