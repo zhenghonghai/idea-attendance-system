@@ -6,7 +6,6 @@ import modules.login.entity.Login;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -20,12 +19,15 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public List<Login> login(){
-        return loginDao.login();
-    }
+    public boolean register(Login login) {
+        boolean flag = loginDao.selectTel(login.getTel());
+        if(flag){
+            return false;
+        }else {
+            loginDao.register(login);
+            return true;
+        }
 
-    @Override
-    public Login register(Login login) {
-        return loginDao.register(login);
+
     }
 }

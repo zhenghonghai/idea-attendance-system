@@ -4,15 +4,15 @@
 
 <mapper namespace="com.example.demo.attendance_system.login.dao.LoginDao" >
 
-    <select id="getLogin" resultType="modules.login.entity.Login" >
+    <select id="getLogin" resultType="boolean" >
          <![CDATA[ select count(1) from login where username = #{login.username} and password = #{login.password}]]>
     </select>
 
-    <select id="login" resultType="modules.login.entity.Login" >
-         select * from login
+    <select id="selectTel" resultType="boolean" >
+        <![CDATA[select count(*) from login where tel = #{tel}]]>
     </select>
-    <select id="register" resultType="modules.login.entity.Login" >
-        select *
-        from login
-    </select>
+
+    <insert id="register" >
+        insert into login (username,password,email,tel) values (#{register.username},#{register.password},#{register.email},#{register.tel});
+    </insert>
 </mapper>

@@ -14,20 +14,23 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @PostMapping("/")
-    public boolean getLogin(@RequestBody Login login){
+    /**
+     * 登录
+     * @param login（账号、密码）
+     * @return
+     */
+    @PostMapping("/login")
+    public boolean getLogin(Login login){
         return loginService.getLogin(login);
     }
 
-    @RequestMapping("/login")
-    public List<Login> login(){
-        System.out.println("------------1111----------");
-        return loginService.login();
-    }
-
-
+    /**
+     * 注册
+     * @param login (账号、密码、邮箱、手机)
+     * @return
+     */
     @RequestMapping("/register")
-    public Login register(@RequestBody Login login){
+    public boolean register(Login login){
         return loginService.register(login);
     }
 
