@@ -5,6 +5,13 @@
 <mapper namespace="com.example.demo.attendance_system.login.dao.LoginDao" >
 
     <select id="getLogin" resultType="modules.login.entity.Login" >
+         <![CDATA[ select count(1) from login where username = #{login.username} and password = #{login.password}]]>
+    </select>
+
+    <select id="login" resultType="modules.login.entity.Login" >
+         select * from login
+    </select>
+    <select id="register" resultType="modules.login.entity.Login" >
         select *
         from login
     </select>

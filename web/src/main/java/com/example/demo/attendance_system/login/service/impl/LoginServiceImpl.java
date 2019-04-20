@@ -15,7 +15,17 @@ public class LoginServiceImpl implements LoginService {
     private LoginDao loginDao;
 
     @Override
-    public List<Login> getLogin() {
-        return loginDao.getLogin();
+    public boolean getLogin(Login login) {
+        return loginDao.getLogin(login);
+    }
+
+    @Override
+    public List<Login> login(){
+        return loginDao.login();
+    }
+
+    @Override
+    public Login register(Login login) {
+        return loginDao.register(login);
     }
 }
