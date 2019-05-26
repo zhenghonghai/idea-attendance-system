@@ -18,36 +18,31 @@ public class PersonMessageServiceImpl implements PersonMessageService {
         return p;
     }
     @Override
-    public PersonMessage changePassword(Map<String,String> params) {
+    public String changePassword(Map<String,String> params) {
         // 根据id获取对象
         String id = params.get("id");
+        String oldPassword =params.get("oldPassword");
+        String newPassword = params.get("newPassword");
+        String checkPassword = params.get("checkPassword");
         PersonMessage personMessage = personMessageDao.getPersonMessageById(id);
         if(personMessage != null){
-            if(params.get("oldPassword").equals(personMessage.getPassword())){
+            if(oldPassword.equals(personMessage.getPassword())){
                 // 旧密码正确修改新密码
-                String newPassword = params.get("newPassword");
-                String changePassword = params.get("changePassword");
-                if(newPassword.equals(changePassword)){
-
+                if(newPassword.equals(checkPassword)){
                     int i =  personMessageDao.changePassword(id,newPassword);
-                    if(i>0){
-                        PersonMessage newPasswordMessage = personMessageDao.getPersonMessageById(id);
-                        return newPasswordMessage;
+                    if(i == 1){
+                        return "修改密码成功";
                     }else {
-                        System.out.println("更新密码失败");
+                       return "更新密码失败";
                     }
                 }else {
-                    System.out.println("两次密码输入不一致");
-                    return null;
+                    return "两次密码输入不一致";
                 }
             }else{
-                System.out.println("旧密码错误");
-                return null;
+                return "旧密码错误";
             }
         }else{
-            System.out.println("id错误");
-            return null;
+            return "获取id错误";
         }
-        return null;
     }
 }

@@ -8,5 +8,5 @@ public interface PersonMessageService {
 
     PersonMessage getPersonMessage(PersonMessage personMessage);
 
-    PersonMessage changePassword(Map<String,String> params);
+    String changePassword(Map<String,String> params);
 }

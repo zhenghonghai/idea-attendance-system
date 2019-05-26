@@ -32,8 +32,8 @@ public class PersonMessageController {
      * @return
      */
     @PostMapping("/home/changePassword")
-    public PersonMessage changePassword(@RequestParam Map<String,String> params){
-        return  personMessageService.changePassword(params);
+    public String changePassword(@RequestParam Map<String,String> params){
+        return personMessageService.changePassword(params);
     }
 
 
