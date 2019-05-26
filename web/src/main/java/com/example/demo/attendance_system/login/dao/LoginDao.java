@@ -11,9 +11,10 @@ import java.util.List;
 @Mapper
 public interface LoginDao {
 
-    boolean getLogin(@Param("login") Login login);
+    Login getLogin(@Param("login") Login login);
 
     boolean selectTel(String tel);
+    boolean selectUsername(String username);
 
-    boolean register(@Param("register") Login login);
+    int register(@Param("register") Login login);
 }

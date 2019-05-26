@@ -6,6 +6,7 @@ import modules.login.entity.Login;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.UUID;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -14,20 +15,24 @@ public class LoginServiceImpl implements LoginService {
     private LoginDao loginDao;
 
     @Override
-    public boolean getLogin(Login login) {
+    public Login getLogin(Login login) {
         return loginDao.getLogin(login);
     }
 
     @Override
-    public boolean register(Login login) {
-        boolean flag = loginDao.selectTel(login.getTel());
-        if(flag){
-            return false;
+    public String register(Login login) {
+        if(loginDao.selectTel(login.getTel())){
+            return "该手机号码已经被注册过";
         }else {
-            loginDao.register(login);
-            return true;
+            if(loginDao.selectUsername(login.getUsername())){
+                return  "该用户名已经存在";
+            }else {
+                UUID uuid = UUID.randomUUID();
+                String id = uuid.toString().replace("-","");
+                login.setId(id);
+                loginDao.register(login);
+                return "注册成功";
+            }
         }
-
-
     }
 }

@@ -1,8 +1,8 @@
-package modules.login.entity;
+package modules.personMessage.entity;
 
 import java.io.Serializable;
 
-public class Login implements Serializable {
+public class PersonMessage implements Serializable {
     private  static final long serivalVersionUID = 1l;
     private String id;
     private String username;

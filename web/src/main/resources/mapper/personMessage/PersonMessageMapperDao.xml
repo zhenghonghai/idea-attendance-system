@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.attendance_system.personMessage.dao.PersonMessageDao" >
+
+    <resultMap id="personMessageMap" type="modules.personMessage.entity.PersonMessage">
+        <result property="id" column="id" jdbcType="VARCHAR"></result>
+        <result property="username" column="username" jdbcType="VARCHAR"></result>
+        <result property="password" column="password" jdbcType="VARCHAR"></result>
+        <result property="email" column="email" jdbcType="VARCHAR"></result>
+        <result property="tel" column="tel" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="getPersonMessage" resultMap="personMessageMap" >
+         select * from login l
+         where l.id = #{personMessage.id}
+         limit 1
+    </select>
+
+    <select id="getPersonMessageById" resultMap="personMessageMap" >
+         select * from login l
+         where l.id = #{id}
+         limit 1
+    </select>
+
+    <update id="changePassword">
+        update login l set l.password = #{newPassword} where l.id = #{id}
+    </update>
+
+
+</mapper>

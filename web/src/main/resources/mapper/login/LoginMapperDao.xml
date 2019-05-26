@@ -4,15 +4,28 @@
 
 <mapper namespace="com.example.demo.attendance_system.login.dao.LoginDao" >
 
-    <select id="getLogin" resultType="boolean" >
-         <![CDATA[ select count(1) from login where username = #{login.username} and password = #{login.password}]]>
+    <resultMap id="LoginMap" type="modules.login.entity.Login">
+        <result property="id" column="id" jdbcType="VARCHAR"></result>
+        <result property="username" column="username" jdbcType="VARCHAR"></result>
+        <result property="password" column="password" jdbcType="VARCHAR"></result>
+        <result property="email" column="email" jdbcType="VARCHAR"></result>
+        <result property="tel" column="tel" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+    <select id="getLogin" resultMap="LoginMap" >
+<!--         <![CDATA[ select count(1) from login where username = #{login.username} and password = #{login.password}]]>-->
+        select * from login where username = #{login.username} and password = #{login.password}
     </select>
 
     <select id="selectTel" resultType="boolean" >
-        <![CDATA[select count(*) from login where tel = #{tel}]]>
+        <![CDATA[select count(1) from login where tel = #{tel}]]>
+    </select>
+
+    <select id="selectUsername" resultType="boolean" >
+        <![CDATA[select count(*) from login where username = #{username}]]>
     </select>
 
     <insert id="register" >
-        insert into login (username,password,email,tel) values (#{register.username},#{register.password},#{register.email},#{register.tel});
+        insert into login (id,username,password,email,tel) values (#{register.id},#{register.username},#{register.password},#{register.email},#{register.tel});
     </insert>
 </mapper>

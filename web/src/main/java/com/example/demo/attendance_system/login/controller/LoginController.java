@@ -20,7 +20,7 @@ public class LoginController {
      * @return
      */
     @PostMapping("/login")
-    public boolean getLogin(Login login){
+    public Login getLogin(Login login){
         return loginService.getLogin(login);
     }
 
@@ -30,7 +30,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/register")
-    public boolean register(Login login){
+    public String register(Login login){
         return loginService.register(login);
     }
 
